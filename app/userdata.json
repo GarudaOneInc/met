@@ -1,0 +1,82 @@
+[
+    {
+        "id": 1,
+        "product": "Speakers",
+        "price": 105.15,
+        "payment_type": "Credit Card",
+        "product_type": "Sports Equipment",
+        "time": "2024-11-22 18:22:30"
+    },
+    {
+        "id": 2,
+        "product": "Smartwatch",
+        "price": 858.54,
+        "payment_type": "Bank Transfer",
+        "product_type": "Furniture",
+        "time": "2024-11-24 18:22:30"
+    },
+    {
+        "id": 3,
+        "product": "Smartwatch",
+        "price": 799.3,
+        "payment_type": "Bank Transfer",
+        "product_type": "Home Appliances",
+        "time": "2024-12-12 18:22:30"
+    },
+    {
+        "id": 4,
+        "product": "Tablet",
+        "price": 369.29,
+        "payment_type": "Cash",
+        "product_type": "Toys",
+        "time": "2024-12-08 18:22:30"
+    },
+    {
+        "id": 5,
+        "product": "Monitor",
+        "price": 912.91,
+        "payment_type": "Cash",
+        "product_type": "Toys",
+        "time": "2024-12-09 18:22:30"
+    },
+    {
+        "id": 6,
+        "product": "Smartphone",
+        "price": 1204.9,
+        "payment_type": "Debit Card",
+        "product_type": "Home Appliances",
+        "time": "2024-11-20 18:22:30"
+    },
+    {
+        "id": 7,
+        "product": "Camera",
+        "price": 777.52,
+        "payment_type": "Debit Card",
+        "product_type": "Sports Equipment",
+        "time": "2024-11-19 18:22:30"
+    },
+    {
+        "id": 8,
+        "product": "Laptop",
+        "price": 1323.85,
+        "payment_type": "Cash",
+        "product_type": "Electronics",
+        "time": "2024-12-08 18:22:30"
+    },
+    {
+        "id": 9,
+        "product": "Keyboard",
+        "price": 862.68,
+        "payment_type": "Debit Card",
+        "product_type": "Accessories",
+        "time": "2024-11-23 18:22:30"
+    },
+    {
+        "id": 10,
+        "product": "Smartphone",
+        "price": 808.16,
+        "payment_type": "Bank Transfer",
+        "product_type": "Toys",
+        "time": "2024-11-29 18:22:30"
+    }
+]
