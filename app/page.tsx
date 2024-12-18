@@ -1,5 +1,6 @@
 "use client"
 import { useState } from 'react'
+import Image from 'next/image';
 
 export default function Home() {
   const [product_name, set_product_name] = useState('');
@@ -40,7 +41,7 @@ export default function Home() {
 
       <div className="w-mix-screen bg-white p-5 rounded-lg shadow-lg mb-4">
         <div className="status-section flex flex-row">
-          <img className='w-10 bg-black p-2 mr-2' src="./vercel.svg" alt="" />
+          <Image className='bg-black p-2 mr-2' width={50} height={45} src="./vercel.svg" alt="" />
           <input className="text-lg font-bold text-purple-400 p-2"
           style={{ width: inputWidth }}
           value={transaction_status}
