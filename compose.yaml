@@ -1,0 +1,26 @@
+services:
+  server: 
+    build:
+      context: .
+      dockerfile: Dockerfile
+      platforms: 
+        - linux/amd64
+        - linux/arm64
+    image:
+        metrackv1:latest
+
+    ports:
+      - 80:80
+    develop:
+      watch:
+        - path: ./package.json
+          action: rebuild
+        - path: ./next.config.js
+          action: rebuild
+        - path: ./package-lock.json
+          action: rebuild
+        - path: .
+          target: /app
+          action: sync
+volumes:
+  tasked:
