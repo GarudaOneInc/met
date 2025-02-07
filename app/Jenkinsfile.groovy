@@ -1,29 +1,31 @@
 pipeline {
     agent any
     environment {
-        IMAGE_NAME = "garudaone/metrackv1"
+        DOCKER_IMAGE = "garudaone/metrackv1:latest"
     }
     stages {
-        stage('Clone Repo') {
+        stage('Checkout') {
             steps {
-                git credentialsId: 'git-credentials', url: 'https://github.com/GarudaOneInc/met.git'
+                git 'https://github.com/GarudaOneInc/met.git'
             }
         }
         stage('Build Docker Image') {
             steps {
-                sh 'docker build -t $IMAGE_NAME .'
+                sh 'docker build -t $DOCKER_IMAGE .'
             }
         }
         stage('Push to Docker Hub') {
             steps {
                 withDockerRegistry([credentialsId: 'docker-hub-credentials', url: '']) {
-                    sh 'docker push $IMAGE_NAME'
+                    sh 'docker push $DOCKER_IMAGE'
                 }
             }
         }
-        stage('Deploy to Kubernetes') {
+        stage('Deploy to Minikube') {
             steps {
-                sh 'kubectl apply -f k8s/deployment.yaml'
+                sh '''
+                kubectl apply -f k8s/deployment.yaml
+                '''
             }
         }
     }
