@@ -6,7 +6,7 @@ pipeline {
     stages {
         stage('Clone Repo') {
             steps {
-                git 'https://github.com/GarudaOneInc/met.git'
+                git credentialsId: 'git-credentials', url: 'https://github.com/GarudaOneInc/met.git'
             }
         }
         stage('Build Docker Image') {

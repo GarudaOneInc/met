@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: met-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: met-app
+  template:
+    metadata:
+      labels:
+        app: met-app
+    spec:
+      containers:
+      - name: met-app
+        image: garudaone/metrackv1:latest   # Replace with your actual Docker Hub image
+        ports:
+        - containerPort: 3000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: met-app-service
+spec:
+  type: NodePort   # Minikube uses NodePort instead of LoadBalancer
+  selector:
+    app: met-app
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 3000
+      nodePort: 30008  # Exposing app on Minikube node
