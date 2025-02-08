@@ -6,7 +6,9 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/GarudaOneInc/met.git'
+                git branch: 'main',
+                    credentialsId: '5c1281dd-7ff6-4a6d-acf8-84b54326b206',
+                    url: 'https://github.com/GarudaOneInc/met.git'
             }
         }
         stage('Build Docker Image') {
