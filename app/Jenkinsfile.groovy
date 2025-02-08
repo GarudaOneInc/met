@@ -33,16 +33,9 @@ pipeline {
         }
         stage('Deploy to Minikube') {
     steps {
-        script {
-            def k8sPath = "app/k8s/deployment.yaml"  // Correct path
-            sh "ls -l ${k8sPath}"  // Debugging step to confirm file exists
-            if (fileExists(k8sPath)) {
-                sh "kubectl apply -f ${k8sPath}"
-            } else {
-                error "File ${k8sPath} not found in workspace!"
-            }
-        }
+        sh 'kubectl apply -f /var/lib/jenkins/workspace/DevopsMetApp/app/k8s/deployment.yaml'
     }
 }
+
     }
 }
