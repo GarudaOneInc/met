@@ -32,9 +32,10 @@ pipeline {
             }
         }
         stage('Deploy to Minikube') {
-    steps {
-        sh 'kubectl apply -f /var/lib/jenkins/workspace/DevopsMetApp/app/k8s/deployment.yaml'
-    }
+            steps {
+                sh "sudo -u ubuntu minikube status"
+                sh "sudo -u ubuntu kubectl get pods"
+            }
 }
 
     }
