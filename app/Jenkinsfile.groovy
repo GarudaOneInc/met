@@ -25,9 +25,14 @@ pipeline {
         }
         stage('Deploy to Minikube') {
             steps {
-                sh '''
-                kubectl apply -f k8s/deployment.yaml
-                '''
+                script {
+            def k8sPath = "app/k8s/deployment.yaml"
+            if (fileExists(k8sPath)) {
+                sh "kubectl apply -f ${k8sPath}"
+            } else {
+                error "File ${k8sPath} not found in workspace!"
+            }
+        }
             }
         }
     }
