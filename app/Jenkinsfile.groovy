@@ -6,10 +6,18 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'main',
-                    credentialsId: '5c1281dd-7ff6-4a6d-acf8-84b54326b206',
-                    url: 'https://github.com/GarudaOneInc/met.git'
-            }
+        script {
+            checkout([
+                $class: 'GitSCM',
+                branches: [[name: '*/main']],
+                userRemoteConfigs: [[
+                    url: 'https://github.com/GarudaOneInc/met.git',
+                    credentialsId: '5c1281dd-7ff6-4a6d-acf8-84b54326b206'
+                ]],
+                extensions: [[$class: 'WipeWorkspace']] // Cleans workspace
+            ])
+        }
+    }
         }
         stage('Build Docker Image') {
             steps {
