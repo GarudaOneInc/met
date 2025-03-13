@@ -38,15 +38,25 @@ pipeline {
 
         stage('Deploy to Kubernetes') {
             steps {
-                sh 'kubectl config use-context minikube' // Adjust for your cluster
-                sh 'kubectl apply -f met/deployment.yaml'
+                withCredentials([file(credentialsId: 'kubernetes_config', variable: 'KUBECONFIG_FILE')]) {
+                    sh '''
+                        export KUBECONFIG=$KUBECONFIG_FILE
+                        kubectl config view
+                        kubectl apply -f met/deployment.yaml
+                    '''
+                }
             }
         }
 
         stage('Verify Deployment') {
             steps {
-                sh 'kubectl get pods'
-                sh 'kubectl get services'
+                withCredentials([file(credentialsId: 'kubernetes_config', variable: 'KUBECONFIG_FILE')]) {
+                    sh '''
+                        export KUBECONFIG=$KUBECONFIG_FILE
+                        kubectl get pods
+                        kubectl get services
+                    '''
+                }
             }
         }
     }
