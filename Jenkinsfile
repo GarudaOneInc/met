@@ -5,13 +5,26 @@ pipeline {
         DOCKER_IMAGE = "garudaone/metrackv1"
         GIT_REPO = "https://github.com/GarudaOneInc/met.git"
         GIT_BRANCH = "main"
+        REPO_DIR = "met"
     }
 
     stages {
-        stage('Clone Repository') {
+        stage('Update Repository') {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'github-credentials', usernameVariable: 'GIT_USER', passwordVariable: 'GIT_PASS')]) {
-                    sh 'git clone -b $GIT_BRANCH https://$GIT_USER:$GIT_PASS@github.com/GarudaOneInc/met.git'
+                    script {
+                        if (fileExists("${REPO_DIR}/.git")) {
+                            // If repo exists, reset and pull latest changes
+                            sh """
+                                cd ${REPO_DIR}
+                                git reset --hard
+                                git pull https://$GIT_USER:$GIT_PASS@github.com/GarudaOneInc/met.git $GIT_BRANCH
+                            """
+                        } else {
+                            // Clone only if repo doesn't exist
+                            sh "git clone -b $GIT_BRANCH https://$GIT_USER:$GIT_PASS@github.com/GarudaOneInc/met.git ${REPO_DIR}"
+                        }
+                    }
                 }
                 dir('met') {
                     sh 'ls -la' // Verify repository contents
