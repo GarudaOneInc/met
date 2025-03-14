@@ -7,17 +7,17 @@ pipeline {
         GIT_BRANCH = "main"
     }
 
-    stages {
-        stage('Clone Repository') {
-            steps {
-                withCredentials([usernamePassword(credentialsId: 'github-credentials', usernameVariable: 'GIT_USER', passwordVariable: 'GIT_PASS')]) {
-                    sh 'git clone -b $GIT_BRANCH https://$GIT_USER:$GIT_PASS@github.com/GarudaOneInc/met.git'
-                }
-                dir('met') {
-                    sh 'ls -la' // Verify repository contents
-                }
-            }
+    stage('Clone Repository') {
+    steps {
+        cleanWs() // This will remove the existing workspace before cloning
+        withCredentials([usernamePassword(credentialsId: 'github-credentials', usernameVariable: 'GIT_USER', passwordVariable: 'GIT_PASS')]) {
+            sh 'git clone -b $GIT_BRANCH https://$GIT_USER:$GIT_PASS@github.com/GarudaOneInc/met.git'
         }
+        dir('met') {
+            sh 'ls -la' // Verify repository contents
+        }
+    }
+}
 
         stage('Build Docker Image') {
             steps {
