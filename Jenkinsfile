@@ -57,10 +57,6 @@ pipeline {
                     chmod +x kubectl
                     kubectl version --client
 
-                    curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
-                    install minikube-linux-amd64 /usr/local/bin/minikube
-                    minikube version
-
                     kubectl config view
                     kubectl apply -f met/deployment.yaml
                 '''
