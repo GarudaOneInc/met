@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        DOCKER_IMAGE = "your-dockerhub-username/metrackv1"
+        DOCKER_IMAGE = "garudaone/metrackv1"
         GIT_REPO = "https://github.com/GarudaOneInc/met.git"
         GIT_BRANCH = "main"
     }
