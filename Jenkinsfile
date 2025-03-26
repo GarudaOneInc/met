@@ -50,6 +50,7 @@ pipeline {
                     sh "kubectl apply -f deployment.yaml"
                     sh "kubectl get nodes -o wide"
                     sh "kubectl get pods"
+                    sh "kubectl get namespaces"
                     sh "kubectl get services"
                     sh "kubectl port-forward service/metrack-service 30080:3000"
                 }
