@@ -51,7 +51,7 @@ pipeline {
                     sh "kubectl get nodes -o wide"
                     sh "kubectl get pods"
                     sh "kubectl get services"
-                    sh "kubectl port-forward service/metrack-service 3000:300080"
+                    sh "kubectl port-forward service/metrack-service 3000:30080"
                 }
 
                 echo "Kubernetes - Success"
