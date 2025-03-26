@@ -1,26 +1,68 @@
 pipeline {
     agent any
     environment {
-        DOCKER_IMAGE = "garudaone/metrackv1"
-        GIT_REPO = "https://github.com/GarudaOneInc/met.git"
-        GIT_BRANCH = "main"
+        DOCKER_IMAGE = "garudaone/metrackv1:latest"
     }
     stages {
-        stage('Clone Repo') {
+        stage('Checkout Code') {
             steps {
-                git branch: "${GIT_BRANCH}", url: "${GIT_REPO}"
+                script {
+                    checkout([
+                        $class: 'GitSCM',
+                        branches: [[name: '*/main']],
+                        userRemoteConfigs: [[
+                            url: 'https://github.com/GarudaOneInc/met.git',
+                            credentialsId: 'garudaonemetapp_github' // Use new PAT credentials ID
+                        ]],
+                        extensions: [[$class: 'WipeWorkspace']]
+                    ])
+                }
+
+                echo "Git - Success"
             }
         }
+
         stage('Build Docker Image') {
             steps {
-                sh 'eval $(minikube docker-env)'
-                sh 'docker build -t ${DOCKER_IMAGE} .'
+                sh "docker --version"
+                sh "docker build -t ${DOCKER_IMAGE} ."
+                echo "Docker Socket - Success"
+
             }
         }
-        stage('Deploy to Minikube') {
+
+        stage('Push to Docker Hub') {
             steps {
-                sh 'kubectl apply -f deployment.yaml'
+                withDockerRegistry([credentialsId: 'garudaonemetapp_dockerhub', url: '']) {
+                    sh "docker push ${DOCKER_IMAGE}"
+                }
+                
+                echo "DockerHub - Success"
+
             }
+        }
+
+        stage('Deploy to Kubernetes') {
+            steps {
+                script {
+                    sh "kubectl apply -f deployment.yaml"
+                    sh "kubectl get nodes -o wide"
+                    sh "kubectl get pods"
+                    sh "kubectl get services"
+                    sh "kubectl port-forward service/met-app-service 30080:3210"
+                }
+
+                echo "Kubernetes - Success"
+            }
+        }
+    }
+    
+    post {
+        success {
+            echo "✅ Deployment Successful!"
+        }
+        failure {
+            echo "❌ Deployment Failed. Check Logs!"
         }
     }
 }
