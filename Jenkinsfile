@@ -47,6 +47,7 @@ pipeline {
                 script {
                     sh "minikube delete"
                     sh "minikube start --driver=docker"
+                    sh "kubectl config use-context minikube"
                     sh "kubectl apply -f deployment.yaml"
                     sh "kubectl get nodes -o wide"
                     sh "kubectl get pods"
