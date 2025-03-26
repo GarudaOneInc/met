@@ -45,14 +45,14 @@ pipeline {
         stage('Deploy to Kubernetes') {
             steps {
                 script {
-                    sh "sudo cat /var/lib/jenkins/.kube/config"
-                    sh "minikube delete"
+                   sh "minikube delete"
                     sh "minikube start --driver=docker"
-                    sh "kubectl config use-context minikube"
                     sh "kubectl apply -f deployment.yaml"
+                    SH "kubectl config get-contexts"
+                    sh "kubectl config use-context minikube"
                     sh "kubectl get nodes -o wide"
-                    sh "kubectl get pods"
-                    sh "kubectl get namespaces"
+                    sh "kubectl get pods -w"
+                    sh "kubectl get pods --namespace=default"
                     sh "kubectl get services"
                     sh "kubectl port-forward service/metrack-service 30080:3000"
                 }
