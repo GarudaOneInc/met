@@ -45,6 +45,7 @@ pipeline {
         stage('Deploy to Kubernetes') {
             steps {
                 script {
+                    sh "sudo cat /var/lib/jenkins/.kube/config"
                     sh "minikube delete"
                     sh "minikube start --driver=docker"
                     sh "kubectl config use-context minikube"
