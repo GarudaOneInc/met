@@ -45,6 +45,8 @@ pipeline {
         stage('Deploy to Kubernetes') {
             steps {
                 script {
+                    sh "minikube delete"
+                    sh "minikube start --driver=docker"
                     sh "kubectl apply -f deployment.yaml"
                     sh "kubectl get nodes -o wide"
                     sh "kubectl get pods"
