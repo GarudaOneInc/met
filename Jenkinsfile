@@ -50,10 +50,10 @@ pipeline {
                     sh "kubectl apply -f deployment.yaml"
                     sh "kubectl config get-contexts"
                     sh "kubectl config use-context minikube"
-                    sh "kubectl get nodes -o wide"
-                    sh "kubectl get pods -w"
-                    sh "kubectl get pods --namespace=default"
-                    sh "kubectl get services"
+                    //sh "kubectl get nodes -o wide"
+                    //sh "kubectl get pods -w"
+                    //sh "kubectl get pods --namespace=default"
+                    //sh "kubectl get services"
                     sh "kubectl port-forward service/metrack-service 30080:3000"
                 }
 
