@@ -46,7 +46,7 @@ pipeline {
             steps {
                 script {
                     sh "minikube delete"
-                    sh "minikube start --driver=docker --listen-address=0.0.0.0"
+                    sh "minikube start --driver=docker"
                     sh "kubectl apply -f deployment.yaml"
                     sh "kubectl config get-contexts"
                     sh "kubectl config use-context minikube"
@@ -57,7 +57,6 @@ pipeline {
                     // sh "kubectl expose deployment metrack-app --type=NodePort --port=30080 --target-port=3000"
                     sh "kubectl port-forward service/metrack-service 3000:30080 &"
                     sh "kubectl get services"
-                    sh "minikube tunnel"
                 }
 
                 echo "Kubernetes - Success"
