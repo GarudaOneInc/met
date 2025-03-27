@@ -37,7 +37,7 @@ kind: Service
 metadata:
   name: metrack-service
 spec:
-  type: LoadBalancer
+  type: NodePort
   selector:
     app: metrack
   ports:
