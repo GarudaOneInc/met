@@ -46,7 +46,7 @@ pipeline {
             steps {
                 script {
                     sh "minikube delete"
-                    sh "minikube start --driver=docker"
+                    sh "minikube start --driver=docker --listen-address=0.0.0.0"
                     sh "kubectl apply -f deployment.yaml"
                     sh "kubectl config get-contexts"
                     sh "kubectl config use-context minikube"
