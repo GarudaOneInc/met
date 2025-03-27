@@ -57,6 +57,7 @@ pipeline {
                     // sh "kubectl expose deployment metrack-app --type=NodePort --port=30080 --target-port=3000"
                     sh "kubectl port-forward service/metrack-service 3000:30080 &"
                     sh "kubectl get services"
+                    sh "minikube tunnel"
                 }
 
                 echo "Kubernetes - Success"
