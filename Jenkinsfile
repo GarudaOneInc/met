@@ -54,8 +54,8 @@ pipeline {
                     sh "kubectl rollout status deployment metrack-app"
                     sh "kubectl get pods"
                     //sh "kubectl get pods --namespace=default"
-                    //sh "kubectl get services"
-                    sh "kubectl port-forward service/metrack-service 30080:3000"
+                    sh "kubectl port-forward service/metrack-service 30080:3000 &"
+                    sh "kubectl get services"
                 }
 
                 echo "Kubernetes - Success"
