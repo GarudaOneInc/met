@@ -54,7 +54,7 @@ pipeline {
                     sh "kubectl rollout status deployment metrack-app"
                     sh "kubectl get pods"
                     //sh "kubectl get pods --namespace=default"
-                    sh "kubectl expose deployment metrack-service --type=NodePort --port=30080 --target-port=3000"
+                    sh "kubectl expose deployment metrack-app --type=NodePort --port=30080 --target-port=3000"
                     sh "kubectl get services"
                 }
 
