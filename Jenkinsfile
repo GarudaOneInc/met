@@ -54,7 +54,7 @@ pipeline {
                     sh "kubectl rollout status deployment metrack-app"
                     sh "kubectl get pods"
                     //sh "kubectl get pods --namespace=default"
-                    sh "kubectl port-forward service/metrack-service 30080:3000 &"
+                    sh "kubectl port-forward service/metrack-service 3000:30080 &"
                     sh "kubectl get services"
                 }
 
