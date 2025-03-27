@@ -51,6 +51,7 @@ pipeline {
                     sh "kubectl config get-contexts"
                     sh "kubectl config use-context minikube"
                     sh "kubectl get nodes -o wide"
+                    sh "kubectl rollout status deployment metrack-app"
                     sh "kubectl get pods"
                     //sh "kubectl get pods --namespace=default"
                     //sh "kubectl get services"
