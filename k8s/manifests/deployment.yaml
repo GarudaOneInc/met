@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: met-app
+  labels:
+    app: met-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: met-app
+  template:
+    metadata:
+      labels:
+        app: met-app
+    spec:
+      containers:
+        - name: met-app
+          image: metrepo/met-app
+          ports:
+            - containerPort: 3000
+          #env:
+           # - name: PORT
+             # value: "3000"
