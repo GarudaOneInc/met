@@ -7,11 +7,11 @@ export default function Home() {
   const [price, set_price] = useState('');
   const [product_category, set_product_category] = useState('');
   const [payment_method,set_payment_method] = useState('');
-  const [transaction_status,set_transaction_status] = useState('');
+  const [transaction_status,set_transaction_status] = useState('Save your transactions');
 
-  if (transaction_status === '') {
-    set_transaction_status('Save your transactions ');
-  }
+ // if (transaction_status === '') {
+  //  set_transaction_status('Save your transactions ');
+ // }
 
   const inputWidth = transaction_status.length ? `${transaction_status.length + 1}ch` : '1ch'; 
   
