@@ -18,7 +18,7 @@ COPY --from=builder /app/.next/static ./.next/static
 COPY --from=builder /app/public ./public
 
 # install only production deps from the standalone package.json
-RUN npm ci --production --ignore-scripts --no-audit --no-fund
+RUN npm ci --ignore-scripts --no-audit --no-fund
 
 EXPOSE 3000
 CMD ["node", "server.js"]
