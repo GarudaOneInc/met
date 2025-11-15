@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: met-app
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: met-app.local
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: met-app
+                port:
+                  number: 3000
+  # Uncomment and configure TLS if needed:
+  # tls:
+  #   - hosts:
+  #       - example.com
+  #     secretName: met-app-tls
