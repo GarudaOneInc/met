@@ -53,7 +53,7 @@ export default function Home() {
         <div className="form-section">
           
           <div>
-            <h1 className="text-4xl font-bold mb-2 text-purple-600">METrack app</h1>
+            <h1 className="text-4xl font-bold mb-2 text-purple-600">METrack app V1</h1>
             <h2 className="text-xl font-bold mb-10 text-purple-400">Your Monthly Expense Tracker</h2>
           </div>
         
