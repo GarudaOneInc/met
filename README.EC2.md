@@ -65,3 +65,13 @@ history
    64  sudo chown -R jenkins:root /home/ubuntu/.minikube
    65  kubectl get services
    66  history
+
+
+
+   IAM User name and password
+   https://059415732335.signin.aws.amazon.com/console
+   eks-admin
+   Gayu21k@
+
+   installed the aws cli on mac os 
+   
