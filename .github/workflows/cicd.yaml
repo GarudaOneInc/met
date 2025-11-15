@@ -28,6 +28,9 @@ jobs:
       with:
         node-version: 20
 
+    - name: Install Next.js dependencies
+      run: npm install next react react-dom
+
     - name: Build
       run: npm run build
   
