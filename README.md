@@ -1,4 +1,4 @@
-## Next.JS Commands
+## Next.JS Command
 
 Standalone Build Configuration in next.config.ts
 
