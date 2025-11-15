@@ -17,6 +17,9 @@ COPY --from=builder /app/.next/standalone ./
 COPY --from=builder /app/.next/static ./.next/static
 COPY --from=builder /app/public ./public
 
+# copy both manifest and lock file
+COPY package.json package-lock.json ./
+
 # install only production deps from the standalone package.json
 RUN npm ci --production --ignore-scripts --no-audit --no-fund
 
