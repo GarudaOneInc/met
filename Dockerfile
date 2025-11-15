@@ -1,7 +1,7 @@
 # Builder stage: install deps and build the Next app
 FROM node:18-alpine AS builder
 WORKDIR /app
-COPY package*.json ./
+COPY package*.json ./ package-lock.json ./
 RUN npm ci --legacy-peer-deps
 COPY . .
 RUN npm run build
@@ -18,7 +18,7 @@ COPY --from=builder /app/.next/static ./.next/static
 COPY --from=builder /app/public ./public
 
 # install only production deps from the standalone package.json
-RUN npm ci --ignore-scripts --no-audit --no-fund
+RUN npm ci --production --ignore-scripts --no-audit --no-fund
 
 EXPOSE 3000
 CMD ["node", "server.js"]
