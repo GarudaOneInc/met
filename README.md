@@ -157,7 +157,3 @@ docker rmi metrackv1 # For Images
 docker rm metractv1(ID of Container) # For Containers
 docker stop metractv1(ID for Container) # Stopping the Container
 ```
-
-Git token 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
-
-Argo cd pass R8O4X6AaT4jlhJoB
