@@ -8,7 +8,7 @@ image:
   repository: metrepo/met-app
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "19398175788"
+  tag: "19398333953"
 
 ingress:
   enabled: false
