@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
         - name: met-app
-          image: metrepo/met-app:latest
+          image: garudaone/met-app:latest
           ports:
             - containerPort: 3000

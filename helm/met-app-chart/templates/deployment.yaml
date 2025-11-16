@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
         - name: met-app
-          image: metrepo/met-app:{{ .Values.image.tag }}
+          image: garudaone/met-app:{{ .Values.image.tag }}
           ports:
             - containerPort: 3000
